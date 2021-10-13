@@ -1,4 +1,4 @@
-from momentum.parade import parade
+from momentum.skatertools.parade import parade
 from successor.extension.reflection import reflect
 from successor.skaters.scalarskaters.sklearnedio import get_local_compiled_model
 from successor.interpolation.linear import linear_interpolator

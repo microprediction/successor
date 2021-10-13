@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="successor",
-    version="0.0.6",
+    version="0.1.0",
     description="Predict the next number in a sequence, or the next k",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -24,7 +24,7 @@ setup(
     test_suite='pytest',
     tests_require=['pytest'],
     include_package_data=True,
-    install_requires=["wheel","pathlib","getjson","numpy","tensorflow","momentum"],
+    install_requires=["wheel","pathlib","getjson","numpy","tensorflow","momentum>=0.2.1"],
     entry_points={
         "console_scripts": [
             "successor=successor.__main__:main",
