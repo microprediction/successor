@@ -11,6 +11,13 @@ def linear_interpolator(y):
     if len(y)==1:
         return y
     else:
-        nans, x = nan_helper(y)
-        y[nans] = np.interp(x(nans), x(~nans), y[~nans])
-        return y
+        return interp_nans(y)
+
+
+def interp_nans(x:[float],left=None, right=None, period=None)->[float]:
+    """ [1 1 1 nan nan 2 2 nan 0] -> [1 1 1 1.3 1.6 2 2  1  0]
+        Same conventions as https://numpy.org/doc/stable/reference/generated/numpy.interp.html
+    """
+    xp = [i for i, yi in enumerate(x) if np.isfinite(yi)]
+    fp = [yi for i, yi in enumerate(x) if np.isfinite(yi)]
+    return list(np.interp(x=list(range(len(x))), xp=xp, fp=fp,left=left,right=right,period=period))
