@@ -5,4 +5,4 @@ def successor_tsa_aggressive_d0_ensemble(y,s,k,a=None,t=None,e=None,r=None):
     return scaler_skater_factory(y=y,s=s,k=k,skater_name='tsa_aggressive_d0_ensemble',n_input=160)
 
 
-SKLEARNED_TSA_SKATERS = [successor_tsa_aggressive_d0_ensemble]
+SCALAR_TSA_SKATERS = [successor_tsa_aggressive_d0_ensemble]

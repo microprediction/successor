@@ -1,3 +1,3 @@
-from successor.skaters.scalarskaters.allscalarskaters import SKLEARNED_SKATERS
+from successor.skaters.scalarskaters.allscalarskaters import SCALAR_SKATERS
 
-SUCCESSOR_SKATERS = SKLEARNED_SKATERS
+SUCCESSOR_SKATERS = SCALAR_SKATERS
