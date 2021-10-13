@@ -3,7 +3,7 @@ import numpy as np
 
 def test_inventory():
     # Ensure we can load and run from JSON
-    from successor.skaters.sklrnd.sklearnedio import SKLEARNED_CHAMPIONS, get_local_compiled_model
+    from successor.skaters.scalarskaters.sklearnedio import SKLEARNED_CHAMPIONS, get_local_compiled_model
 
     for champ in SKLEARNED_CHAMPIONS:
         model = get_local_compiled_model(**champ)

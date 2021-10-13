@@ -3,9 +3,9 @@ import os
 from getjson import getjson
 from pprint import pprint
 import json
-from successor.skaters.sklrnd.sklearnedinventory import SKLEARNED_CHAMPION_URLS
+from successor.skaters.scalarskaters.sklearnedinventory import SKLEARNED_CHAMPION_URLS
 from tensorflow import keras
-from successor.skaters.sklrnd.optimizerembeddings import keras_optimizer_from_name
+from successor.conventions import keras_optimizer_from_name
 
 ROOT_PATH = str(pathlib.Path(os.path.dirname(os.path.realpath(__file__))).parent.parent.parent)
 MODEL_CACHE = ROOT_PATH + os.path.sep + 'sklearnedmodelcache'

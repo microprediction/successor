@@ -1,20 +1,22 @@
-from successor.skaters.sklrnd.transforms import choice_from_dict
+# Borrowed from timemachines
+
+def nonecast(x,fill_value=0.0):
+    if x is not None:
+        return [xj if xj is not None else fill_value for xj in x]
+
+def wrap(x):
+    """ Ensure x is a list of float """
+    if x is None:
+        return None
+    elif isinstance(x,(float,int)):
+        return [float(x)]
+    else:
+        return list(x)
+
+
 from tensorflow import keras
 
 # TODO: Move into package shared by sklearned, maybe
-
-OPTIMIZER_WEIGHTS = {'SGD' :10,
-                   'RMSprop' :20,
-                   'Adam' :5,
-                   'Adadelta' :3,
-                   'Adagrad' :3,
-                   'Adamax' :3,
-                   'Nadam' :3,
-                   'Ftrl' :2}
-
-
-def keras_optimizer_name(u:float):
-    return choice_from_dict(u=u, weighting=OPTIMIZER_WEIGHTS)
 
 
 def keras_optimizer_from_name(opt_name,learning_rate):
@@ -36,7 +38,3 @@ def keras_optimizer_from_name(opt_name,learning_rate):
         return keras.optimizers.Ftrl(learning_rate=learning_rate)
     else:
         raise ValueError('Forgot '+opt_name)
-
-
-if __name__=='__main__':
-    print(keras_optimizer_name(u=0.999))

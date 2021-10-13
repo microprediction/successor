@@ -2,3 +2,4 @@ tensorflow
 getjson
 pathlib
 wheel
+momentum>=0.1.3
