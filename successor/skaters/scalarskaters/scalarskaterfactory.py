@@ -40,7 +40,7 @@ def scaler_skater_factory(y, s, k:int, skater_name:str, n_input:int, extender=No
                 print('No surrogate found for k='+str(k)+' so interpolation or extrapolation will be used.')
         if n_models==0:
             raise LookupError('Cannot instantiate as no local model was found for '+skater_name)
-        s['cpu'] = {'initialization':time.time()-init_start_time,'invocation':0}
+        s['cpu'] = {'initialization':time.time()-init_start_time,'invocation':0,'count':0}
     if y0 is None:
         return None, s, None
     else:
@@ -67,6 +67,7 @@ def scaler_skater_factory(y, s, k:int, skater_name:str, n_input:int, extender=No
         x_std_fallback = nonecast(x_std,fill_value=1.0)
 
         s['cpu']['invocation']+= time.time()-invocation_start_time
+        s['cpu']['count']+=1
         return x, x_std_fallback, s
 
 
