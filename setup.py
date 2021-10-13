@@ -20,11 +20,11 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
     ],
-    packages=["successor","successor.skaters","successor.skaters.skl"],
+    packages=["successor","successor.skaters","successor.skaters.sklrnd"],
     test_suite='pytest',
     tests_require=['pytest'],
     include_package_data=True,
-    install_requires=["wheel","pathlib","getjson"],
+    install_requires=["wheel","pathlib","getjson","tensorflow"],
     entry_points={
         "console_scripts": [
             "successor=successor.__main__:main",
