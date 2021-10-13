@@ -14,6 +14,10 @@ def wrap(x):
         return list(x)
 
 
+def skater_model_suffix(skater_name, k, n_input):
+    return skater_name + '_' + str(k) + '_' + str(n_input) + '.json'
+
+
 from tensorflow import keras
 
 # TODO: Move into package shared by sklearned, maybe

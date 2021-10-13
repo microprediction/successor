@@ -1,6 +1,6 @@
 from momentum.skatertools.parade import parade
 from successor.extension.reflection import reflect
-from successor.skaters.scalarskaters.sklearnedio import get_local_compiled_model
+from successor.skaters.scalarskaters.remote import get_remote_compiled_model
 from successor.interpolation.linear import linear_interpolator
 from successor.conventions import wrap, nonecast
 import numpy as np
@@ -8,12 +8,13 @@ import time
 
 
 
-def scaler_skater_factory(y, s, k:int, skater_name:str, n_input:int, extender=None, interpolator=None):
+def scaler_skater_factory(y, s, k:int, skater_name:str, n_input:int, extender=None, interpolator=None, local=False):
     """ Runs keras surrogate models, extending the time-series as required.
 
             skater_name
             n_input
             extender    : Takes [ float ] len<n_input possibly, to array (1, 1, n_input)
+            local
 
         This will try to find local models for each k. If it cannot, it will interpolate or extrapolate based on the
         surrogates that it is able to find. By default interpolation is linear and extrapolation is nearest neighbour.
@@ -34,12 +35,18 @@ def scaler_skater_factory(y, s, k:int, skater_name:str, n_input:int, extender=No
         n_models = 0
         for model_k in range(1,k+1):
             try:
-                s['models'][model_k] = get_local_compiled_model(skater_name=skater_name,k=model_k,n_input=n_input)
+                if local:
+                    raise NotImplementedError('Won''t work at present')
+                    # https://stackoverflow.com/questions/6028000/how-to-read-a-static-file-from-inside-a-python-package/58941536#58941536
+                    from successor.skaters.scalarskaters.local import get_local_compiled_model
+                    s['models'][model_k] = get_local_compiled_model(skater_name=skater_name,k=model_k,n_input=n_input)
+                else:
+                    s['models'][model_k] = get_remote_compiled_model(skater_name=skater_name, k=model_k, n_input=n_input)
                 n_models += 1
             except:
                 print('No surrogate found for k='+str(k)+' so interpolation or extrapolation will be used.')
         if n_models==0:
-            raise LookupError('Cannot instantiate as no local model was found for '+skater_name)
+            raise LookupError('Cannot instantiate as no model was found for '+skater_name)
         s['cpu'] = {'initialization':time.time()-init_start_time,'invocation':0,'count':0}
     if y0 is None:
         return None, s, None
