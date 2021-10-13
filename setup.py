@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="successor",
-    version="0.1.4",
+    version="0.2.0",
     description="Predict the next number in a sequence, or the next k",
     long_description=README,
     long_description_content_type="text/markdown",
