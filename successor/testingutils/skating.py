@@ -1,5 +1,7 @@
 import numpy as np
 
+# TODO: Move to momentum maybe?
+
 
 def run_skater(f):
     s = {}
