@@ -6,7 +6,7 @@ if __name__=='__main__':
     import numpy as np
 
     # 1. Import a skater
-    from successor.skaters.scalarskaters.scalartsaskaters import successor_tsa_aggressive_d0_ensemble as f
+    from successor.skaters.scalarskaters.scalartsaskaters import suc_tsa_aggressive_d0_ensemble as f
 
     # 2. Univariate data
     y = list(np.cumsum(np.random.randn(1000)))

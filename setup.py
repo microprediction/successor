@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="successor",
-    version="0.1.0",
+    version="0.1.1",
     description="Predict the next number in a sequence, or the next k",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -20,7 +20,7 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
     ],
-    packages=["successor","successor.skaters","successor.skaters.scalarskaters"],
+    packages=["successor","successor.skaters","successor.skaters.scalarskaters","successor.extension","successor.interpolation"],
     test_suite='pytest',
     tests_require=['pytest'],
     include_package_data=True,
