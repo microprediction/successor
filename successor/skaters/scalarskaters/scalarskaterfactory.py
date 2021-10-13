@@ -60,14 +60,14 @@ def scaler_skater_factory(y, s, k:int, skater_name:str, n_input:int, extender=No
             raise IndexError('wrong length returned by extender')
         y_extended_input = np.ndarray(shape=(1,1,n_input))
         y_extended_input[0,0,:] = y_extended
-        x_hat = [np.nan for _ in range(k)]
+        x_with_nan = [np.nan for _ in range(k)]
         for model_k, k_model in s['models'].items():
-            x = k_model(y_extended_input) # faster then k_model.predict( )
+            x_ = k_model(y_extended_input) # faster then k_model.predict( )
                                 # https://github.com/tensorflow/tensorflow/commit/42f469be0f3e8c36624f0b01c571e7ed15f75faf
-            x_hat[model_k-1] = x[0,0,0]
+            x_with_nan[model_k-1] = float(x_[0,0,0])
 
         # Interpolate
-        x = interpolator(x_hat)
+        x = interpolator(x_with_nan)
 
         # Use empirical x_std, ignore empirical bias
         _x_bias, x_std, s['p'] = parade(p=s['p'], x=x, y=y0)
