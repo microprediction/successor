@@ -1,0 +1,4 @@
+tensorflow
+getjson
+pathlib
+wheel
