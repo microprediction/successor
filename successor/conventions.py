@@ -15,7 +15,7 @@ def wrap(x):
 
 
 def skater_model_suffix(skater_name, k, n_input):
-    return skater_name + '_' + str(k) + '_' + str(n_input) + '.json'
+    return skater_name + '_' + str(k) + '_' + str(n_input)
 
 
 from tensorflow import keras

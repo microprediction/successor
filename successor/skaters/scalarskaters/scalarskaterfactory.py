@@ -1,6 +1,6 @@
 from momentum.skatertools.parade import parade
 from successor.extension.reflection import reflect
-from successor.skaters.scalarskaters.remote import get_remote_compiled_model
+from successor.skaters.scalarskaters.remote import get_remote_tensorflow
 from successor.interpolation.linear import linear_interpolator
 from successor.conventions import wrap, nonecast
 import numpy as np
@@ -37,11 +37,8 @@ def scaler_skater_factory(y, s, k:int, skater_name:str, n_input:int, extender=No
             try:
                 if local:
                     raise NotImplementedError('Won''t work at present')
-                    # https://stackoverflow.com/questions/6028000/how-to-read-a-static-file-from-inside-a-python-package/58941536#58941536
-                    from successor.skaters.scalarskaters.local import get_local_compiled_model
-                    s['models'][model_k] = get_local_compiled_model(skater_name=skater_name,k=model_k,n_input=n_input)
                 else:
-                    s['models'][model_k] = get_remote_compiled_model(skater_name=skater_name, k=model_k, n_input=n_input)
+                    s['models'][model_k] = get_remote_tensorflow(skater_name=skater_name, k=model_k, n_input=n_input)
                 n_models += 1
             except:
                 print('No surrogate found for k='+str(k)+' so interpolation or extrapolation will be used.')
