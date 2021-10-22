@@ -31,6 +31,10 @@ See [basic_use](https://github.com/microprediction/successor/tree/main/examples/
 Skaters follow the convention established by the [timemachines](https://github.com/microprediction/timemachines) library and you are encouraged to read the description of
 the "skater" signature if anything is confusing. 
 
+## Side effect
+
+Dumps tensorflow model files to disk. 
+
 ## Benchmarking
 
 See [Elo ratings](https://microprediction.github.io/timeseries-elo-ratings/html_leaderboards/univariate-k_001.html) 

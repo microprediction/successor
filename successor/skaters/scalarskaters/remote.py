@@ -99,7 +99,7 @@ def get_remote_compiled_model_with_weights(skater_name:str,k:int,n_input:int, ca
     return model
 
 
-def get_remote_tensorflow(skater_name:str,k:int,n_input:int,cache_dir=None):
+def get_remote_tensorflow(skater_name:str,k:int,n_input:int,cache_dir=None, verbose=True):
     _path = remote_tensorflow_path(skater_name=skater_name,k=k,n_input=n_input)
     from keras.utils.data_utils import get_file
     fname = skater_model_suffix(skater_name=skater_name, k=k, n_input=n_input)

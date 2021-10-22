@@ -38,10 +38,10 @@ def scaler_skater_factory(y, s, k:int, skater_name:str, n_input:int, extender=No
                 if local:
                     raise NotImplementedError('Won''t work at present')
                 else:
-                    s['models'][model_k] = get_remote_tensorflow(skater_name=skater_name, k=model_k, n_input=n_input)
+                    s['models'][model_k] = get_remote_tensorflow(skater_name=skater_name, k=model_k, n_input=n_input, verbose=False)
                 n_models += 1
             except:
-                print('No surrogate found for k='+str(k)+' so interpolation or extrapolation will be used.')
+                print('No surrogate found for k='+str(model_k)+' so interpolation or extrapolation will be used.')
         if n_models==0:
             raise LookupError('Cannot instantiate as no model was found for '+skater_name)
         s['cpu'] = {'initialization':time.time()-init_start_time,'invocation':0,'count':0}

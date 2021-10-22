@@ -2,7 +2,7 @@ from successor.testingutils.skating import run_skater
 from pprint import pprint
 
 
-def test_all_sklearned_compiled():
+def test_all_scalar_skaters():
     from successor.skaters.scalarskaters.allscalarskaters import SCALAR_SKATERS
     cpu_metrics = list()
     for k in [8,12]:
@@ -14,4 +14,4 @@ def test_all_sklearned_compiled():
 
 
 if __name__=='__main__':
-    test_all_sklearned_compiled()
+    test_all_scalar_skaters()
