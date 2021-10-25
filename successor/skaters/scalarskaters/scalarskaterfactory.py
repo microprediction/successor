@@ -55,11 +55,14 @@ def scaler_skater_factory(y, s, k:int, skater_name:str, n_input:int, extender=No
         y_extended = extender(s['y'][:n_input],n_input=n_input)
         if not len(y_extended)==n_input:
             raise IndexError('wrong length returned by extender')
+        # Rescale
+        scale_factor = np.mean([ abs(y_) for y_ in y_extended ])+1
+
         y_extended_input = np.ndarray(shape=(1,1,n_input))
-        y_extended_input[0,0,:] = y_extended
+        y_extended_input[0,0,:] = [ y_/scale_factor for y_ in y_extended]
         x_with_nan = [np.nan for _ in range(k)]
         for model_k, k_model in s['models'].items():
-            x_ = k_model(y_extended_input) # faster then k_model.predict( )
+            x_ = scale_factor*k_model(y_extended_input) # faster then k_model.predict( )
                                 # https://github.com/tensorflow/tensorflow/commit/42f469be0f3e8c36624f0b01c571e7ed15f75faf
             x_with_nan[model_k-1] = float(x_[0,0,0])
 
