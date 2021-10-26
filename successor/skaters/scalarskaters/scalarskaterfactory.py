@@ -5,6 +5,7 @@ from successor.interpolation.linear import linear_interpolator
 from successor.conventions import wrap, nonecast
 import numpy as np
 import time
+from successor.skaters.scalarskaters.dimensional import squeeze_out_middle
 
 
 
@@ -64,7 +65,8 @@ def scaler_skater_factory(y, s, k:int, skater_name:str, n_input:int, extender=No
         for model_k, k_model in s['models'].items():
             x_ = scale_factor*k_model(y_extended_input) # faster then k_model.predict( )
                                 # https://github.com/tensorflow/tensorflow/commit/42f469be0f3e8c36624f0b01c571e7ed15f75faf
-            x_with_nan[model_k-1] = float(x_[0,0,0])
+            xq_ = squeeze_out_middle(x_)
+            x_with_nan[model_k-1] = float(xq_[0,0])
 
         # Interpolate
         x = interpolator(x_with_nan)
